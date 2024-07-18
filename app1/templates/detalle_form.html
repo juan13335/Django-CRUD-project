@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="conteiner">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-4">
+                <div class="card card-body">
+                <h1 class="text-center text-secondary">{{detalle.titulo}}</h1>
+                {{error}}
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <button class="btn btn-primary mt-1">
+                            update
+                        </button>
+                    </form>
+    
+                    <form action="{% url 'form_completo' detalle.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-success mt-1">
+                            Realizado
+                        </button>
+                    </form>
+    
+                    <form action="{% url 'form_eliminado' detalle.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger mt-1">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>  
+        </div>
+    </div>
+</main>
+{% endblock %}

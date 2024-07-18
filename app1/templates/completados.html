@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="conteiner">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">Formularios completos</h1>
+                <ul class="list-group">
+                    {% for form in forms %}
+                    <a class="list-group-item" href="{% url 'detalleform' form.id %}">
+                        <!-- Genera una URL para la vista 'detalleform' con el ID del formulario actual -->
+                        <header class="d-flex justify-content-between">
+                            {% if form.importancia %}
+                        <h1 class="fw-bold text-success">{{form.titulo}}</h1>
+                        {% else %}
+                        <h1 class="fw-bold">{{form.titulo}}</h1>
+                        {% endif %}
+                        </header>
+                        <p>{{form.descripcion}}</p>
+                    </a>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+</main>
+{% endblock %}
